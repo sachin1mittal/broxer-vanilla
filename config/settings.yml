@@ -1,0 +1,67 @@
+RAILS:
+  SECRET_KEY_BASE: ''
+
+PUMA:
+  THREADS:
+    MIN: 1
+    MAX: 5
+  WORKERS: 1
+  PORT: 3000
+
+PSQL:
+  POOL: 5
+  HOST: localhost
+  PORT: 5432
+  USERNAME: broxer_user
+  PASSWORD: broxer_pass
+  DATABASE: broxer_db
+  CONNECT_TIMEOUT: 1
+  READ_TIMEOUT: 1
+  CHECKOUT_TIMEOUT: 1
+  STATEMENT_LIMIT: 100
+
+CACHE:
+  ENABLE: false
+  REDIS:
+    HOST: 127.0.0.1
+    PORT: 6379
+    TIMEOUT: 0.1 # Second
+    POOL: 10
+    LOGGING: false
+
+PUBSUB:
+  ENABLE: false
+  REDIS:
+    HOST: 127.0.0.1
+    PORT: 6379
+    TIMEOUT: 0.1 # Second
+    LOGGING: false
+
+SYNCHRONIZE:
+  ENABLE: false
+  REDIS:
+    HOST: 127.0.0.1
+    PORT: 6379
+    LOGGING: false
+
+SIDEKIQ:
+  REDIS:
+    HOST: 127.0.0.1
+    PORT: 6379
+  SERVER:
+    REDIS:
+      POOL: 25
+  CLIENT:
+    REDIS:
+      POOL: 5
+
+LOGRAGE:
+  ENABLE_RESPONSE: false
+
+CONSTANTS:
+  PAGINATION:
+    DEFAULT_PER_PAGE: 100
+    MAX_PER_PAGE: 1000
+  CACHE_EXPIRE:
+    SYNC_KEY: 1800               # Seconds
+    REGISTRY: 3600               # Seconds

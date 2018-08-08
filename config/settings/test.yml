@@ -1,0 +1,6 @@
+PSQL:
+  DATABASE: inventory_vendor_management_test
+
+PROVIDERS:
+  VINCULUM:
+    VENDOR_IDS: ['3']
