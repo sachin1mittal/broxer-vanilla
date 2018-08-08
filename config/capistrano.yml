@@ -1,0 +1,13 @@
+---
+app_name: broxer
+repository: git@github.com:sachinmittal/broxer.git
+branch: master
+paths:
+  server: /home/ubuntu/1mg
+  local: /home/ubuntu/1mg/broxer
+  config: /home/ubuntu/1mg/broxer/config
+roles:
+  app:
+  - a.b.c.d
+  job:
+  - a.b.c.d

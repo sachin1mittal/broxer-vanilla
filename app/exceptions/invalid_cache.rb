@@ -1,0 +1,2 @@
+class InvalidCache < StandardError
+end

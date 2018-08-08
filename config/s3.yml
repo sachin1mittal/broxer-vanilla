@@ -1,0 +1,10 @@
+credentials:
+  access_key_id: <%= Settings.AWS.AWS_ACCESS_KEY_ID %>
+  secret_access_key: <%= Settings.AWS.AWS_SECRET_ACCESS_KEY %>
+
+staging:
+  bucket: <%= Settings.AWS.AWS_S3_BUCKET_STAGING %>
+production:
+  bucket: <%= Settings.AWS.AWS_S3_BUCKET %>
+
+s3_region: <%= Settings.AWS.AWS_S3_REGION %>

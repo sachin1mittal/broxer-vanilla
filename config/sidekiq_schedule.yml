@@ -1,0 +1,4 @@
+#publish_skus:
+#  cron: '* * * * *'
+#  class: 'InventoryModule::InventoriesPublishQueueWorker'
+#  queue: inventories_publish_queue_worker

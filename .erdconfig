@@ -1,0 +1,21 @@
+attributes:
+  - primary_keys
+  - foreign_keys
+  - timestamps
+  - inheritance
+  - content
+disconnected: true
+filename: erd
+filetype: pdf
+indirect: false
+inheritance: true
+notation: crowsfoot
+orientation: vertical
+polymorphism: false
+title: Entity Relationship Diagram
+markup: true
+sort: true
+warn: true
+exclude: null
+only: null
+prepend_primary: false
