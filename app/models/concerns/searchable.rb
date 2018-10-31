@@ -1,7 +1,7 @@
 #
 # This module enable searching on resources
 #
-# @author [rohitjangid]
+# @author [sachinmittal]
 module Searchable
   extend ActiveSupport::Concern
   module ClassMethods

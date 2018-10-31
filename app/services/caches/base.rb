@@ -2,7 +2,7 @@ module Caches
   #
   # This class is serves as a interface for cache
   #
-  # @author [rohitjangid]
+  # @author [sachinmittal]
   class Base
     CACHE_POOL = $cache_redis_pool
     CACHE_ENABLED = Settings.CACHE.ENABLE

@@ -2,7 +2,7 @@ module AuthModule
   #
   # This class is responsible to maintain the permission resources
   #
-  # @author [rohitjangid]
+  # @author [sachinmittal]
   #
   class Resources
     RESOURCES_FILE = 'config/resources.yml' # YAML file containing all the permissions

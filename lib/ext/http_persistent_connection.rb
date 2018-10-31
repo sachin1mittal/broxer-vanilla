@@ -1,7 +1,7 @@
 #
 # Template class for yourls connections
 #
-# @author [rohitjangid]
+# @author [sachinmittal]
 class HttpPersistentConnection
   #
   # Initialize the connection

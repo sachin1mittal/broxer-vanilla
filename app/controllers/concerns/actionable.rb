@@ -2,7 +2,7 @@ module Concerns::Actionable
   extend ::ActiveSupport::Concern
 
   included do
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :perform_action] # TODO[@rohitjangid]: This needs to be improved
+    before_action :set_resource, only: [:show, :edit, :update, :destroy, :perform_action]
   end
 
   def perform_action

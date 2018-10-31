@@ -2,7 +2,7 @@ module Queries
   #
   # This class provide base functionality for filters
   #
-  # @author [rohitjangid]
+  # @author [sachinmittal]
   #
   class Filters
     FILTERS_PRIORITY = {}

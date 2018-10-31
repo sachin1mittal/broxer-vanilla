@@ -2,7 +2,7 @@ module Queries
   #
   # This class provide base functionality for sorting
   #
-  # @author [rohitjangid]
+  # @author [sachinmittal]
   class Sorts
     #
     # @param scope [ActiveRecord] Model scope

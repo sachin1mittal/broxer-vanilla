@@ -1,7 +1,7 @@
 #
 # This module enable filtering on resources
 #
-# @author [rohitjangid]
+# @author [sachinmittal]
 module Filterable
   extend ActiveSupport::Concern
   module ClassMethods

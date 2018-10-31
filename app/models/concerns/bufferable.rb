@@ -1,7 +1,7 @@
 #
 # This module enable buffering on resources
 #
-# @author [rohitjangid]
+# @author [sachinmittal]
 module Bufferable
   extend ActiveSupport::Concern
   module ClassMethods

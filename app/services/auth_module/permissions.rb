@@ -2,7 +2,7 @@ module AuthModule
   #
   # This class is responsible for all permission related operations.(Authorization/updating permissions)
   #
-  # @author [rohitjangid]
+  # @author [sachinmittal]
   #
   class Permissions
     attr_accessor :user
@@ -23,8 +23,7 @@ module AuthModule
     # Raise error if given path is not authorized by the user
     #
     def authorize!
-      raise Unauthorized.new('No Permission') unless authorize
-      return true
+      authorize || raise Unauthorized.new('No Permission')
     end
 
     #
@@ -41,7 +40,7 @@ module AuthModule
           return true
         end
       end
-      return false
+      false
     end
 
     #

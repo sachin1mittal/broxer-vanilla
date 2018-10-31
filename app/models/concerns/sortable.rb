@@ -1,7 +1,7 @@
 #
 # This module enable sorting on resources
 #
-# @author [rohitjangid]
+# @author [sachinmittal]
 module Sortable
   extend ActiveSupport::Concern
   module ClassMethods

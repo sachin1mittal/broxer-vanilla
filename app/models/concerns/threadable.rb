@@ -1,7 +1,7 @@
 #
 # This module enable current user related methods on models
 #
-# @author [rohitjangid]
+# @author [sachinmittal]
 module Threadable
   extend ActiveSupport::Concern
   module ClassMethods

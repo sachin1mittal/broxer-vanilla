@@ -2,7 +2,7 @@ module Rendor
   #
   # This class is responsible for various preprocessing before rendering
   #
-  # @author [rohitjangid]
+  # @author [sachinmittal]
   #
   class PreProcessor
     META_TOTAL_PAGES_KEY = 'total_pages'
