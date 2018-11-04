@@ -9,12 +9,6 @@ PUMA:
   PORT: 3000
 
 PSQL:
-  POOL: 5
-  HOST: localhost
-  PORT: 5432
-  USERNAME: sachin
-  PASSWORD: s
-  DATABASE: broxer_db
   CONNECT_TIMEOUT: 1
   READ_TIMEOUT: 1
   CHECKOUT_TIMEOUT: 1

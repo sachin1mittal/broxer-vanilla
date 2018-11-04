@@ -14,18 +14,22 @@ class Order < ApplicationRecord
     refunded: 'refunded'
   }
 
-  enum status: {
-    pending: 'pending',
-    placed: 'placed',
+  enum progress_status: {
     active: 'active',
-    rejected: 'rejected',
-    submitted: 'submitted',
-    submission_rejected: 'submission_rejected',
-    delivered: 'delivered'
+    cancelled: 'cancelled',
+    completed: 'completed',
+    delivered: 'delivered',
+    revision: 'revision'
+  }
+
+  enum dispute_status: {
+    resolved: 'resolved',
+    missing_details: 'missing_details',
+    disputed: 'disputed'
   }
 
   validates :amount, numericality: { only_integer: true, greater_than: 0 }
-  validates_presence_of :reference_number, :amount, :status, :payment_status
+  validates_presence_of :reference_number, :amount, :progress_status, :payment_status
 
   before_validation :init
 
@@ -33,12 +37,16 @@ class Order < ApplicationRecord
 
   def init
     self.reference_number ||= assign_reference_number
+    self.payment_status ||= :unpaid
+    self.progress_status ||= :active
+    self.progress_status ||= :resolved
   end
 
   def assign_reference_number
-    assigned_reference_numbers = self.class.pluck(:reference_number)
     begin
-      current_reference_number = SecureRandom.hex(3).upcase.prepend('BRXR-')
-    end while assigned_reference_numbers.include?(current_reference_number)
+      current_reference_number = SecureRandom.hex(5).upcase.prepend('BRXR-')
+    end while self.class.where(reference_number: current_reference_number).exists?
+
+    current_reference_number
   end
 end

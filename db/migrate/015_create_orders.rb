@@ -10,7 +10,9 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.integer :amount
       t.date :expected_completion_date
       t.integer :expected_delivery_time
-      t.string :status
+      t.string :progress_status
+      t.string :dispute_status
+      t.jsonb :job_requirements
       t.string :payment_status
       t.timestamps null: false
     end

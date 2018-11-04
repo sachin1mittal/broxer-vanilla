@@ -1,7 +1,7 @@
 class PaymentTransaction < ApplicationRecord
   has_paper_trail
 
-  belongs_to :order
+  belongs_to :order, optional: true
   belongs_to :user
   has_many :action_logs, as: :actionable
 
@@ -14,7 +14,8 @@ class PaymentTransaction < ApplicationRecord
   enum mode: {
     credit_debit_card: 'credit_debit_card',
     net_banking: 'net_banking',
-    e_wallet: 'e_wallet'
+    e_wallet: 'e_wallet',
+    broxer_wallet: 'broxer_wallet'
   }
 
   enum currency: {
@@ -26,8 +27,8 @@ class PaymentTransaction < ApplicationRecord
   }
 
   enum transaction_type: {
-    payment: 'payment',
-    refund: 'refund'
+    credit: 'credit',
+    debit: 'debit'
   }
 
   enum status: {
@@ -37,9 +38,25 @@ class PaymentTransaction < ApplicationRecord
   }
 
   validates_presence_of :gateway, :gateway_reference_number, :reference_number,
-    :order_amount, :amount, :mode, :currency, :transaction_type, :status, :invoice_number
+    :amount, :mode, :currency, :transaction_type, :status, :invoice_number
 
-  validates :order_amount, numericality: { integer: true, greater_than: 0 }
   validates_numericality_of :transaction_charges, :commission_charges, :currency_conversion_charges,
     :other_charges, :amount, numericality: { greater_than: 0, allow_nil: true }
+
+  before_validation :init
+
+  private
+
+  def init
+    self.reference_number ||= assign_reference_number
+    self.status ||= :pending
+  end
+
+  def assign_reference_number
+    begin
+      current_reference_number = SecureRandom.hex(5).upcase.prepend('BRXR-')
+    end while self.class.where(reference_number: current_reference_number).exists?
+
+    current_reference_number
+  end
 end

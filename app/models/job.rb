@@ -8,7 +8,9 @@ class Job < ApplicationRecord
   }
 
   enum admin_status: {
+    pending: 'pending',
     approved: 'approved',
+    requires_modification: 'requires_modification',
     disapproved: 'disapproved'
   }
 
@@ -21,7 +23,6 @@ class Job < ApplicationRecord
   has_many :reviews, as: :reviewable
   has_many :tag_links, as: :taggable
   has_many :tags, through: :tag_links
-
   belongs_to :category
   belongs_to :user
 

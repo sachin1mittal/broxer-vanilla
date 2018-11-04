@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, omniauth_providers: [:twitter, :facebook, :google_oauth2, :linkedin]
-
   has_paper_trail
 
   enum status: {
@@ -9,15 +6,9 @@ class User < ApplicationRecord
     unverified: 'unverified'
   }
 
-  enum level: {
-    beginner: 'beginner',
-    intermediate: 'intermediate',
-    expert: 'expert'
-  }
-
   enum provider: {
     facebook: 'facebook',
-    google_oauth2: 'google_oauth2',
+    google: 'google',
     twitter: 'twitter',
     linkedin: 'linkedin',
     email: 'email'
@@ -28,9 +19,7 @@ class User < ApplicationRecord
     full: 'full'
   }
 
-  attr_accessor :confirm_password
-
-  has_many :jobs
+  has_many :posted_jobs, class_name: 'Job'
   has_many :reviews, foreign_key: 'reviewer_id'
   has_many :favourite_collections
   has_many :favourites, through: :favourite_collections
@@ -48,11 +37,12 @@ class User < ApplicationRecord
   has_many :permissions, through: :roles
 
   validates_attachment_content_type :profile_pic, PAPERCLIP_CONTENT_VALIDATION[:image]
-  validates_presence_of :name, :email, :provider, :level, :status, :username
-  validate :email_uniqueness, on: :create
-  validate :password_same_as_confirm_password, on: :create
+  validates_presence_of :name, :email, :provider, :status, :username
+  validates_uniqueness_of :email, :username
 
   before_validation :init
+
+  ######## Paperclip Methods #############
 
   def get_styles(column_name)
     { large: '700x450>', medium: '300x225>', chat_icon: '55x55>' }
@@ -62,50 +52,16 @@ class User < ApplicationRecord
     [:thumbnail]
   end
 
+  ######## Paperclip Methods Ends #############
+
   def init
-    self.level ||= :beginner
     self.provider ||= :email
     self.status ||= :verified
-    self.gplus_profile ||= gplus_profile
-    self.facebook_profile ||= facebook_profile
-    self.twitter_profile ||= twitter_profile
-    self.linkedin_profile ||= linkedin_profile
-    self.username ||= generate_unique_user_name
-    self.token_expires_at ||= 60.days.from_now
   end
 
-  def generate_unique_user_name
-    existing_usernames = self.class.pluck(:username)
-    assigned_username = self.name.parameterize
-    while existing_usernames.include?(assigned_username)
-      assigned_username = assigned_username + ('A'..'Z').to_a.sample
-    end
-    assigned_username
-  end
-
-  def profile_pic_from_url=(url)
-    self.profile_pic = open(url)
-  end
-
-  def self.find_for_create_auth_user(params, current_user)
-    return current_user if current_user.present?
-    @user = User.find_by(email: params[:email])
-    if @user.present?
-      @user.update_attributes(params)
-      return @user
-    end
-    User.create(params)
-  end
-
-  def self.find_by_email_password(email:, password:)
-    user = find_by(email: email)
-    if user.present? && user.valid_password?(password)
-      user
-    end
-  end
-
-  def logged_in_with_social_platform?
-    [:facebook, :google_oauth2, :twitter, :linkedin].include?(self.provider)
+  def self.find_by_email_password!(email:, password:)
+    user = find_by!(email: email)
+    user.check_password!(password) && user
   end
 
   #
@@ -133,32 +89,14 @@ class User < ApplicationRecord
   end
 
   def permissions_given
-    role_ids = roles.includes(:children)
-                     .map(&:self_and_descendants)
-                     .flatten
-                     .map(&:id)
-
     Permission.joins(:roles)
-              .where(roles: { id: role_ids })
+              .where(roles: { id: self.role_ids })
               .distinct
   end
 
-  private
-
-  def email_uniqueness_append_message
-    logged_in_with_social_platform? ? "using #{platform}." : '.'
-  end
-
-  def password_same_as_confirm_password
-    if self.password != self.confirm_password
-      self.errors.add('Confirm Password', 'should match with password')
-    end
-  end
-
-  def email_uniqueness
-    existing_emails = self.class.pluck(:email)
-    if existing_emails.include?(self.email)
-      self.errors.add('Email',  "Already Signed Up with this email#{email_uniqueness_append_message}")
+  def check_password!(password)
+    if !Digest::SHA1.hexdigest(password) == self.encrypted_password
+      raise ::Unauthorized.new('Incorrect Password')
     end
   end
 end

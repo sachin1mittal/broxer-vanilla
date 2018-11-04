@@ -31,6 +31,7 @@ server/*
 !/shared/**/.keep
 .local_repo/
 erd.pdf
+public/system
 
 # Ignore zeus configuration
 zeus.json

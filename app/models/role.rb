@@ -4,31 +4,24 @@ class Role < ApplicationRecord
   has_and_belongs_to_many :users
   has_and_belongs_to_many :permissions
 
-  has_many :children, class_name: 'Role', foreign_key: 'parent_id'
-  belongs_to :parent, class_name: 'Role', foreign_key: 'parent_id', optional: true
-
   def self.default_role
-    vendor_role
+    buyer_role
   end
 
-  def self.vendor_role
-    self.find_or_create_by!(label: 'vendor')
+  def self.buyer
+    self.find_or_create_by!(label: 'buyer')
   end
 
-  def descendant_ids
-    children.pluck(:id) + children.map(&:descendant_ids).flatten
+  def self.admin
+    self.find_or_create_by!(label: 'admin')
   end
 
-  def descendants
-    Role.where(id: descendant_ids)
+  def self.seller
+    self.find_or_create_by!(label: 'seller')
   end
 
-  def self_and_descendants
-    Role.where(id: descendant_ids.push(id))
-  end
-
-  def permissions_given
-    Permission.joins(:roles).where(roles: { id: descendant_ids.push(id) })
+  def self.manager
+    self.find_or_create_by!(label: 'manager')
   end
 
   #

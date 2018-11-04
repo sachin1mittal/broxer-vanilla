@@ -11,8 +11,5 @@ module Concerns::Errors
     rescue_from ::Forbidden, with: :render_forbidden
     rescue_from ::ValidationFailed, with: :render_validation_failed
     rescue_from ::ValidationsFailed, with: :render_validations_failed
-    rescue_from InterService::Model::RecordNotFound, with: :render_not_found
-    rescue_from InterService::Model::InvalidRequest, with: :render_bad_request
-    rescue_from InterService::Model::RecordNotSaved, with: :render_unprocessable_entity
   end
 end

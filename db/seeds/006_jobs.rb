@@ -21,6 +21,27 @@ User.all.each do |user|
       {
         question:  Faker::Lorem.question,
         answer:  Faker::Lorem.sentence
+      }],
+      requirements: [{
+        id: SecureRandom.uuid,
+        type:  :text,
+        question:  Faker::Lorem.question,
+        mandatory: [true, false].sample
+      },
+      {
+        id: SecureRandom.uuid,
+        type:  :mcq,
+        question:  Faker::Lorem.question,
+        answers: {}.tap { |hash| 3.times { |index| hash[index.to_s] = Faker::Lorem.sentence } },
+        multiple: [true, false].sample,
+        mandatory: [true, false].sample
+      },
+      {
+        id: SecureRandom.uuid,
+        type:  :file,
+        filetype: :png,
+        question:  Faker::Lorem.question,
+        mandatory: [true, false].sample
       }]
     )
   end

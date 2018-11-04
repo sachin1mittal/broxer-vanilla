@@ -11,19 +11,17 @@ Order.includes(:buyer).all.each do |order|
   PaymentTransaction.create!(
     order: order,
     user: order.buyer,
-    gateway: [:razorpay, :payu, :paypal].sample,
+    gateway: PaymentTransaction.gateways.keys.sample,
     gateway_reference_number: SecureRandom.hex(5),
-    reference_number: SecureRandom.hex(5),
-    order_amount: order.amount,
     transaction_charges: transaction_charges,
     commission_charges: commission_charges,
     currency_conversion_charges: currency_conversion_charges,
     other_charges: other_charges,
     amount: total_amount,
-    mode: [:credit_debit_card, :net_banking, :e_wallet].sample,
-    currency: [:INR, :USD, :GBP, :PKR, :PKR, :BDT].sample,
-    transaction_type: [:payment, :refund].sample,
-    status: [:pending, :success, :failure].sample,
+    mode: PaymentTransaction.modes.keys.sample,
+    currency: PaymentTransaction.currencies.keys.sample,
+    transaction_type: PaymentTransaction.transaction_types.keys.sample,
+    status: PaymentTransaction.statuses.keys.sample,
     invoice_number: SecureRandom.hex(5)
   )
 end

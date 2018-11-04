@@ -4,34 +4,23 @@ module Workflows
     included do
       include Workflow
 
-      workflow_column :status
+      workflow_column :payment_status
       workflow do
 
-        state :pending do
-          event :place, transitions_to: :placed
+        state :unpaid do
+          event :pay, transitions_to: :paid
         end
 
-        state :placed do
-          event :start, transitions_to: :in_progress
-          event :reject, transitions_to: :rejected
+        state :paid do
+          event :request_refund, transitions_to: :refund_requested
         end
 
-        state :in_progress do
-          event :reject, transitions_to: :rejected
-          event :submit, transitions_to: :submitted
+        state :refund_requested do
+          event :reject_refund, transitions_to: :paid
+          event :refund, transitions_to: :refunded
         end
 
-        state :submitted do
-          event :reject_submission, transitions_to: :submission_rejected
-          event :deliver, transitions_to: :delivered
-        end
-
-        state :submission_rejected do
-          event :submit, transitions_to: :submitted
-          event :reject, transitions_to: :rejected
-        end
-
-        state :delivered
+        state :refunded
 
         on_transition do |from, to, triggering_event, *event_args|
           user = self.class.current_user
@@ -42,22 +31,16 @@ module Workflows
         end
       end
 
-      def place
+      def pay
       end
 
-      def start
+      def request_refund
       end
 
-      def reject
+      def reject_refund
       end
 
-      def submit
-      end
-
-      def reject_submission
-      end
-
-      def deliver
+      def refund
       end
     end
   end
