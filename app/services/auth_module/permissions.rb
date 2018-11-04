@@ -23,7 +23,7 @@ module AuthModule
     # Raise error if given path is not authorized by the user
     #
     def authorize!
-      authorize || raise Unauthorized.new('No Permission')
+      raise Unauthorized.new('No Permission') unless authorize
     end
 
     #

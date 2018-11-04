@@ -1,5 +1,4 @@
 class PackageOrder < Order
-
   belongs_to :package
 
   validates_presence_of :quantity, :amount

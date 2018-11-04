@@ -1,5 +1,8 @@
 module Api::Public
-  # Need to implement comm with identity service
   class AuthController < BaseController
+    def authenticate_user!
+      # Skipping auth for internal api
+      true
+    end
   end
 end

@@ -23,4 +23,3 @@ Job.all.each do |job|
 end
 
 puts 'Completed Packages'
-

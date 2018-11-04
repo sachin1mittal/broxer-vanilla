@@ -8,6 +8,7 @@ class CreateJobs < ActiveRecord::Migration[5.1]
       t.text :description
       t.string :status, index: true
       t.jsonb :faqs
+      t.jsonb :requirements
       t.string :admin_status
       t.integer :order_limit
       t.attachment :banner

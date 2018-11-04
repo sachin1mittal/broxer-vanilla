@@ -7,4 +7,22 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   extend AdminRoutes
   extend PublicRoutes
+
+  ######## For Chats ########
+
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :users, only: [:index, :create, :show] do
+  #       resources :conversations, only: [:index, :show, :create] do
+  #         resources :messages, only: [:create]
+  #       end
+  #     end
+  #   end
+  # end
+  # root to: 'chat#index'
+
+  # mount ActionCable.server => '/cable'
+
+  ######## For Chats ########
+
 end

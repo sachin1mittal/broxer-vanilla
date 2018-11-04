@@ -6,7 +6,6 @@ class CreatePaymentTransactions < ActiveRecord::Migration[5.1]
       t.string :gateway
       t.string :gateway_reference_number
       t.string :reference_number
-      t.integer :order_amount
       t.decimal :transaction_charges
       t.decimal :commission_charges
       t.decimal :currency_conversion_charges

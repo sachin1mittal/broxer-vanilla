@@ -10,7 +10,6 @@ all_jobs_and_users = [Job.all, all_users].flatten
   parent_review1 = Review.create!(
     reviewable: reviewable,
     reviewer: reviewer,
-    act: :seller_communication,
     comment: Faker::Lorem.sentence,
     parent_id: nil,
     rating: (1..5).step(0.1).to_a.sample.round(1)
@@ -19,7 +18,6 @@ all_jobs_and_users = [Job.all, all_users].flatten
   parent_review2 = Review.create!(
     reviewable: reviewable,
     reviewer: reviewer,
-    act: :service_as_described,
     comment: Faker::Lorem.sentence,
     parent_id: nil,
     rating: (1..5).step(0.1).to_a.sample.round(1)
@@ -28,7 +26,6 @@ all_jobs_and_users = [Job.all, all_users].flatten
   parent_review3 = Review.create!(
     reviewable: reviewable,
     reviewer: reviewer,
-    act: :would_recommend,
     comment: Faker::Lorem.sentence,
     parent_id: nil,
     rating: (1..5).step(0.1).to_a.sample.round(1)
@@ -38,7 +35,6 @@ all_jobs_and_users = [Job.all, all_users].flatten
     Review.create!(
       reviewable: reviewable,
       reviewer: reviewer,
-      act: :seller_communication,
       comment: Faker::Lorem.sentence,
       parent_id: parent_review1.id,
       rating: (1..5).step(0.1).to_a.sample.round(1)
@@ -49,7 +45,6 @@ all_jobs_and_users = [Job.all, all_users].flatten
     Review.create!(
       reviewable: reviewable,
       reviewer: reviewer,
-      act: :service_as_described,
       comment: Faker::Lorem.sentence,
       parent_id: parent_review2.id,
       rating: (1..5).step(0.1).to_a.sample.round(1)
@@ -60,7 +55,6 @@ all_jobs_and_users = [Job.all, all_users].flatten
     Review.create!(
       reviewable: reviewable,
       reviewer: reviewer,
-      act: :would_recommend,
       comment: Faker::Lorem.sentence,
       parent_id: parent_review3.id,
       rating: (1..5).step(0.1).to_a.sample.round(1)

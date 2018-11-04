@@ -7,12 +7,25 @@ module Workflows
       workflow_column :status
       workflow do
 
+        state :pending do
+          event :disapprove, transitions_to: :disapproved
+          event :approve, transitions_to: :approved
+          event :modify, transitions_to: :requires_modification
+        end
+
         state :approved do
+          event :disapprove, transitions_to: :disapproved
+          event :modify, transitions_to: :requires_modification
+        end
+
+        state :requires_modification do
+          event :approve, transitions_to: :approved
           event :disapprove, transitions_to: :disapproved
         end
 
         state :disapproved do
           event :approve, transitions_to: :approved
+          event :modify, transitions_to: :requires_modification
         end
 
         on_transition do |from, to, triggering_event, *event_args|
@@ -29,7 +42,9 @@ module Workflows
 
       def disapprove
       end
-      
+
+      def modify
+      end
     end
   end
 end

@@ -1,6 +1,6 @@
 module AuthModule
   #
-  # This class is responsible for managing users from order creation flow
+  # This class is responsible for managing users
   #
   # @author [sachinmittal]
   #
@@ -15,20 +15,29 @@ module AuthModule
       self.user = user
     end
 
-    #
-    # Find or create user
-    # @param user_params: [Hash] Required
-    # @return [ActiveRecord User] Created user
-    #
-    def self.create!(user_params:)
-      raise BadRequest.new('Email is mandatory') unless user_params[:email].present?
-      user = User.find_by(email: user_params[:email])
-      user_params[:password] ||= user_params[:phone_number]
-      user || User.create!(user_params)
+    def self.find_or_create(params)
+      if params[:provider] == 'email'
+        User.find_by_email_password!(
+          email: params[:email],
+          password: params[:password]
+        )
+      else
+        fetch_user_from_oauth_token(params[:provider], params[:oauth_token])
+      end
+
+      user.generate_jwt
     end
 
-    def update(user_params)
-      user.update_attributes!(user_params.except(:email))
+    def self.fetch_user_from_oauth_token(provider, oauth_token)
+      ## TODO: access user info from auth providers using given token from fron end
+    end
+
+    def self.create(params)
+
+    end
+
+    def update(params)
+
     end
   end
 end

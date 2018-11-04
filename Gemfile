@@ -86,12 +86,12 @@ gem 'sidekiq-reliable-fetch', github: 'rohitjangid/sidekiq-reliable-fetch', bran
 # gem 'sidekiq_remove_scheduled', '~> 1.0', '>= 1.0.2' # Just call remove_scheduled method and pass the argument to the worker to remove scheduled jobs. No need to store Job Ids
 gem 'whenever', '~> 0.10.0' # Clean ruby syntax for writing and deploying cron jobs
 
+gem 'awesome_print'
 gem 'paperclip'
 gem 'aws-sdk-s3'
 gem 'workflow'
 gem 'oj'
 gem 'countries'
-gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
