@@ -15,29 +15,26 @@ module AuthModule
       self.user = user
     end
 
-    def self.find_or_create(params)
-      if params[:provider] == 'email'
-        User.find_by_email_password!(
-          email: params[:email],
-          password: params[:password]
-        )
-      else
-        fetch_user_from_oauth_token(params[:provider], params[:oauth_token])
-      end
+    def self.find_or_create_with_oauth(provider, params)
+      debugger
+      # if params[:provider] == 'email'
+      #   User.find_by_email_password!(
+      #     email: params[:email],
+      #     password: params[:password]
+      #   )
+      # else
+      #   fetch_user_from_oauth_token(params[:provider], params[:oauth_token])
+      # end
 
-      user.generate_jwt
+      # user.generate_jwt
     end
 
-    def self.fetch_user_from_oauth_token(provider, oauth_token)
-      ## TODO: access user info from auth providers using given token from fron end
-    end
+    # def self.create(params)
 
-    def self.create(params)
+    # end
 
-    end
+    # def update(params)
 
-    def update(params)
-
-    end
+    # end
   end
 end

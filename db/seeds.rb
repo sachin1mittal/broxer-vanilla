@@ -1,7 +1,9 @@
+require 'byebug'
+
 if ENV['VERSION'].present?
   puts 'Starting Main Seeds File'
   if ENV['VERSION'] == 'all'
-    Dir["#{Rails.root}/db/seeds/*"].each do |seed_file|
+    Dir["#{Rails.root}/db/seeds/*"].sort.each do |seed_file|
       load(seed_file)
     end
   elsif ENV['VERSION'].to_i > 0 && ENV['VERSION'].include?('only')
@@ -11,7 +13,7 @@ if ENV['VERSION'].present?
       end
     end
   elsif ENV['VERSION'].to_i > 0
-    Dir["#{Rails.root}/db/seeds/*"].each do |seed_file|
+    Dir["#{Rails.root}/db/seeds/*"].sort.each do |seed_file|
       if seed_file.split('/').last.split('_').first.to_i >= ENV['VERSION'].to_i
         load(seed_file)
       end

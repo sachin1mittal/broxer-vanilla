@@ -13,7 +13,7 @@ User.all.each do |user|
       status: [:draft, :posted, :inactive].sample,
       admin_status: [:approved, :disapproved].sample,
       order_limit: [50..1000].to_a.sample,
-      banner: File.open('/Users/sachinmittal/Desktop/a.jpg', 'rb'),
+      banner: File.open('/Users/sachin/Desktop/a.jpg', 'rb'),
       faqs: [{
         question:  Faker::Lorem.question,
         answer:  Faker::Lorem.sentence

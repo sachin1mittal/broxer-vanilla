@@ -12,7 +12,7 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Broxer
+module BroxerApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -20,6 +20,8 @@ module Broxer
     # Set migration version to number
     config.active_record.timestamped_migrations = false
 
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
     # Disable schema migration dumping
     config.active_record.dump_schema_after_migration = false
 

@@ -2,10 +2,6 @@ module Api::Public::V1
   class UsersController < ::Api::Public::AuthController
     skip_before_action :valid_action?, only: [:show]
 
-    def create
-
-    end
-
     def update
       current_user.update_attributes!(update_user_params)
       render_serializer scope: current_user

@@ -23,7 +23,7 @@ Country.where(name: selected_countries).each do |country|
       country: country,
       username: u_name.parameterize.underscore,
       description: Faker::Lorem.paragraph,
-      profile_pic: File.open('/Users/sachinmittal/Desktop/a.jpg', 'rb'),
+      profile_pic: File.open('/Users/sachin/Desktop/a.jpg', 'rb'),
       status: [:verified, :unverified].sample,
       availability_type: [:part, :full].sample,
       wallet_balance: (1..5).step(0.1).to_a.sample.round(2),

@@ -422,7 +422,6 @@ DEPENDENCIES
   logstash-event (~> 1.2, >= 1.2.02)
   newrelic_rpm (~> 5.3, >= 5.3.0.346)
   oj
-  omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-linkedin-oauth2

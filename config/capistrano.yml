@@ -1,11 +1,11 @@
 ---
-app_name: broxer
-repository: git@github.com:sachinmittal/broxer.git
+app_name: broxer_api
+repository: git@github.com:sachinmittal/broxer_api.git
 branch: master
 paths:
   server: /home/ubuntu/1mg
-  local: /home/ubuntu/1mg/broxer
-  config: /home/ubuntu/1mg/broxer/config
+  local: /home/ubuntu/1mg/broxer_api
+  config: /home/ubuntu/1mg/broxer_api/config
 roles:
   app:
   - a.b.c.d
