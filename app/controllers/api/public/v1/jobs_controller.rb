@@ -8,6 +8,14 @@ module Api::Public::V1
 
     end
 
+    def index
+        
+    end
+
+    def search
+        
+    end
+
     def update
 
     end

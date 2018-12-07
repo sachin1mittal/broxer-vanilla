@@ -1,24 +1,15 @@
 module Api::Admin::V1
   class ActionLogsController < ::Api::Admin::AuthController
+  	skip_before_action :valid_action?, only: [:index]
 
     def index
-
+      resources = ActionLog.includes(params[:include])
+      render_serializer scope: resources
     end
 
-    def create
+    private
 
-    end
-
-    def update
-
-    end
-
-    def show
-
-    end
-
-    def destroy
-
+    def index_params
     end
   end
 end

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   include Concerns::ThreadUserable
   include Concerns::Cacheable
   include Concerns::ParamValidator
+  include Concerns::ActionValidator
 
   before_action :authenticate_user!
   before_action :set_paper_trail_whodunnit

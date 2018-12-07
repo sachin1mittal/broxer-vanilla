@@ -14,7 +14,7 @@ module Api::Admin::V1
     end
 
     def show
-
+        
     end
 
     def destroy
