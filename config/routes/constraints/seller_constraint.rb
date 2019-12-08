@@ -1,4 +1,4 @@
-class SellerConstraint
+class Constraints::SellerConstraint
   def matches?
     true
   end

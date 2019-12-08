@@ -3,6 +3,7 @@ require_relative 'boot'
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
+require 'sprockets/railtie'
 require "active_job/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
@@ -48,5 +49,7 @@ module BroxerApi
 
     #Removing - Uses a front-end server's file serving support from your Rails application
     config.middleware.delete Rack::Sendfile
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
   end
 end
