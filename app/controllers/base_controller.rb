@@ -1,4 +1,4 @@
-class BaseController < ApplicationController
+class BaseController < ApiApplicationController
   # prepend_before_action :disable_includes
   prepend_before_action :prepare_params
   before_action :valid_pagination_params?
