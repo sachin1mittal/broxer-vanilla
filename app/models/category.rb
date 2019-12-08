@@ -10,7 +10,7 @@ class Category < ApplicationRecord
   validates_attachment_content_type :banner, PAPERCLIP_CONTENT_VALIDATION[:image]
   validates_attachment_content_type :logo, PAPERCLIP_CONTENT_VALIDATION[:image]
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :description, length: { maximum: 1000, allow_nil: true }
 
   def get_styles(column_name)
