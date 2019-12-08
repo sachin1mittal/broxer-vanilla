@@ -1,3 +1,5 @@
+Paperclip::DataUriAdapter.register
+
 S3_CONFIG = YAML.load(ERB.new(File.read("#{Rails.root}/config/s3.yml")).result).with_indifferent_access
 
 PAPERCLIP_OPTIONS = {
