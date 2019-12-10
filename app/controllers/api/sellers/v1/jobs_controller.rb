@@ -1,5 +1,10 @@
-module Api::Buyers::V1
-  class MessagesController < ::Api::Buyers::AuthController
+module Api::Sellers::V1
+  class JobsController < ::Api::Sellers::AuthController
+
+    def show
+
+    end
+
     def index
 
     end

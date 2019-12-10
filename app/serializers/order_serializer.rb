@@ -1,7 +1,7 @@
 class OrderSerializer < ApplicationSerializer
   attributes :id, :buyer_id, :seller_id, :reference_number, :description,
              :package, :quantity, :amount, :expected_completion_date,
-             :expected_delivery_time, :status, :payment_status, :created_at, :updated_at
+             :expected_delivery_time, :payment_status, :created_at, :updated_at
 
   has_one :buyer
   has_one :seller
@@ -14,6 +14,6 @@ class OrderSerializer < ApplicationSerializer
   def self.default_attributes
     [:id, :buyer_id, :seller_id, :reference_number, :description,
      :package, :quantity, :amount, :expected_completion_date,
-     :expected_delivery_time, :status, :payment_status, :created_at, :updated_at]
+     :expected_delivery_time, :payment_status, :created_at, :updated_at]
   end
 end

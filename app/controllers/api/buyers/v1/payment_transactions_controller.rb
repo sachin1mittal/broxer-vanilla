@@ -4,14 +4,6 @@ module Api::Buyers::V1
 
     end
 
-    def update
-
-    end
-
-    def create
-
-    end
-
     def show
 
     end
