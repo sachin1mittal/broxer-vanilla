@@ -1,5 +1,6 @@
-module Api::Buyers::V1
-  class ReviewsController < ::Api::Buyers::AuthController
+module Api::Sellers::V1
+  class PackagesController < ::Api::Sellers::AuthController
+
     def create
 
     end

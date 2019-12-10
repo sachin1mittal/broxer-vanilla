@@ -11,26 +11,10 @@ module Api::Buyers::V1
       render_serializer scope: user
     end
 
-    def public_show
-
-    end
-
     private
 
     def update_user_params
       params.require(:users).permit()
-    end
-
-    def create_user_params
-      params.require(:users).permit()
-    end
-
-    def valid_create?
-
-    end
-
-    def valid_update?
-
     end
 
     def user
