@@ -7,6 +7,7 @@ module Rendor
   class PreProcessor
     META_TOTAL_PAGES_KEY = 'total_pages'
     META_TOTAL_COUNT_KEY = 'total_count'
+    META_PAGE_KEY = 'page'
 
     attr_accessor :scope, # Scope for processing
                   :meta, # Meta hash
@@ -35,7 +36,8 @@ module Rendor
       self.include_fields = query[:include]
       self.sort_by = query[:sort_by]
       @enable_sorting = sorting
-      @enable_pagination = pagination
+      #For now there is no need for the bulk data, will add in future if need will be there.
+      @enable_pagination = pagination #pagination
       @enable_pagination_meta = pagination_meta
       self.page = (query[:page] || 1).to_i # Default first page
       self.per_page = (query[:per_page] || Settings.CONSTANTS.PAGINATION.DEFAULT_PER_PAGE).to_i
@@ -50,7 +52,7 @@ module Rendor
       return self if scope.nil?
       prepare_sort_by
       apply_sorting
-      apply_pagination if @enable_pagination
+      @enable_pagination ? apply_pagination : limit_results
       apply_select
       serialized_json
 
@@ -114,9 +116,17 @@ module Rendor
       if @enable_pagination_meta
         meta.merge!(
           META_TOTAL_PAGES_KEY => total_pages,
-          META_TOTAL_COUNT_KEY => total_count
+          META_TOTAL_COUNT_KEY => total_count,
+          META_PAGE_KEY => page
         )
       end
+    end
+
+    #
+    # Function to limit results even if pagination is false
+    #
+    def limit_results
+      self.scope = scope.limit(Settings.CONSTANTS.PAGINATION.MAX_LIMIT)
     end
 
     #
