@@ -3,5 +3,9 @@ module Api::Public::V1
     def show
 
     end
+
+    def index
+
+    end
   end
 end

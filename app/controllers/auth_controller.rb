@@ -1,7 +1,8 @@
 class AuthController < BaseController
-  before_action :authorize_user!
+  before_action :authenticate_user!
 
-  def authorize_user!
+  def authenticate_user!
   	true
+    # current_user.present?
   end
 end
