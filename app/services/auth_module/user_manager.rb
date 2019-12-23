@@ -16,7 +16,6 @@ module AuthModule
     end
 
     def self.find_or_create_with_oauth(provider, params)
-      debugger
       # if params[:provider] == 'email'
       #   User.find_by_email_password!(
       #     email: params[:email],
