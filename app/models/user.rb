@@ -29,12 +29,8 @@ class User < ApplicationRecord
   has_many :payment_transactions
   has_many :skills_users
   has_many :skills, through: :skills_users
-  has_many :performed_actions, class_name: 'ActionLog', foreign_key: 'performer_id'
-  has_many :action_logs, as: :actionable
   belongs_to :country, optional: true
   has_attached_file :profile_pic, PAPERCLIP_OPTIONS
-  has_and_belongs_to_many :roles
-  has_many :permissions, through: :roles
 
   validates_attachment_content_type :profile_pic, PAPERCLIP_CONTENT_VALIDATION[:image]
   validates_presence_of :name, :email, :provider, :status, :username
@@ -64,34 +60,11 @@ class User < ApplicationRecord
     user.check_password!(password) && user
   end
 
-  #
-  # Add given role to user
-  # @param role [Role] Role
-  #
-  def add_role(role)
-    return if self.roles.exists?(role.id)
-    self.roles << role
-  end
-
-  #
-  # Remove given role from user
-  # @param role [Role] Role
-  #
-  def remove_role(role)
-    self.roles.destroy(role)
-  end
-
   def generate_jwt(expiry = 60.days.from_now.to_i)
     JWT.encode(
       { id: id, exp: expiry },
       Rails.application.secrets.secret_key_base
     )
-  end
-
-  def permissions_given
-    Permission.joins(:roles)
-              .where(roles: { id: self.role_ids })
-              .distinct
   end
 
   def check_password!(password)

@@ -18,7 +18,6 @@ class Job < ApplicationRecord
   has_many :jobs_metadatas
   has_many :packages
   has_many :followers, class_name: 'Favourite', as: :favourable
-  has_many :action_logs, as: :actionable
   has_many :spam_reports, as: :reportable
   has_many :reviews, as: :reviewable
   has_many :tag_links, as: :taggable

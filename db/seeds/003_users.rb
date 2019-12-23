@@ -5,8 +5,6 @@ selected_countries = [
   'India', 'Bangladesh', 'United States of America', 'New Zealand', 'Norway'
 ]
 
-roles = Role.all
-
 Country.where(name: selected_countries).each do |country|
   10.times do
     u_name = Faker::Name.name
@@ -25,6 +23,7 @@ Country.where(name: selected_countries).each do |country|
       description: Faker::Lorem.paragraph,
       profile_pic: File.open('/Users/sachin/Desktop/a.jpg', 'rb'),
       status: [:verified, :unverified].sample,
+      seller: [true, false].sample,
       availability_type: [:part, :full].sample,
       wallet_balance: (1..5).step(0.1).to_a.sample.round(2),
       languages: [Faker::ProgrammingLanguage.name],
@@ -40,7 +39,6 @@ Country.where(name: selected_countries).each do |country|
         year: (1990..2015).to_a.sample
       }]
     )
-    @user.add_role(roles.sample)
   end
 end
 

@@ -3,7 +3,6 @@ class PaymentTransaction < ApplicationRecord
 
   belongs_to :order, optional: true
   belongs_to :user
-  has_many :action_logs, as: :actionable
 
   enum gateway: {
     razorpay: 'razorpay',

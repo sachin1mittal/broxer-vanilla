@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :encrypted_password
       t.string :provider, index: true
       t.string :pre_token
+      t.boolean :seller
 
       t.string :name
       t.string :gplus_profile

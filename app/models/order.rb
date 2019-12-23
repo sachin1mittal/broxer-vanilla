@@ -5,7 +5,6 @@ class Order < ApplicationRecord
   belongs_to :seller, class_name: 'User'
   belongs_to :package
   has_many :payment_transactions
-  has_many :action_logs, as: :actionable
 
   enum payment_status: {
     unpaid: 'unpaid',

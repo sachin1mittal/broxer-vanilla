@@ -15,8 +15,6 @@ class UserSerializer < ApplicationSerializer
   # has_many :skills_users
   # has_many :skills
   # has_one :country
-  # has_many :roles
-  # has_many :permissions
 
   #
   # Default attributes for serializer

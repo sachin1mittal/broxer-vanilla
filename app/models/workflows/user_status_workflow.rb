@@ -18,7 +18,6 @@ module Workflows
         on_transition do |from, to, triggering_event, *event_args|
           user = self.class.current_user
           if user.present?
-            self.action_logs.create!(user: user, action: triggering_event)
             self.touch_with_version
           end
         end
