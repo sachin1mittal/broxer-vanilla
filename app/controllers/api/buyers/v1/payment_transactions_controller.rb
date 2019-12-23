@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class PaymentTransactionsController < ::Api::Buyers::AuthController
+  class PaymentTransactionsController < ::AuthController
     def index
 
     end

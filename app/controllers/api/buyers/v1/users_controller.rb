@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class UsersController < ::Api::Buyers::AuthController
+  class UsersController < ::AuthController
     skip_before_action :valid_action?, only: [:show]
 
     def update

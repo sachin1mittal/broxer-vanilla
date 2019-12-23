@@ -1,5 +1,4 @@
 class SessionsController < BaseController
-  skip_before_action :authenticate_user!
 
   def login_with_oauth
     token = AuthModule::UserManager.find_or_create_with_oauth(params[:provider], omniauth_params)

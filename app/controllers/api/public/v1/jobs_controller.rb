@@ -1,8 +1,9 @@
 module Api::Public::V1
-  class JobsController < ::Api::Public::BaseController
-    skip_before_action :valid_action?
+  class JobsController < ::BaseController
+    skip_before_action :valid_action?, only: :show
 
     def index
+      api_render json: { message: 'Public JobsController Index' }
     end
 
     def show
@@ -13,6 +14,10 @@ module Api::Public::V1
 
     def job
       @job ||= Job.find(params[:id])
+    end
+
+    def valid_index?
+
     end
   end
 end

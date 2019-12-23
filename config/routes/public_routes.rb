@@ -5,17 +5,11 @@ module PublicRoutes
 
       namespace 'api', module: 'api/public', as: :public do
         namespace :v1 do
-          resources :categories, only: [:show]
+          resources :categories, only: :index
           resources :jobs, only: [:show, :index]
-          resources :users, only: [:show]
-          resources :home, only: [:index] do
-            collection do
-              get :privacy_policy
-              get :about_us
-              get :contact_us
-              get :terms_and_conditions
-            end
-          end
+          resources :users, only: :show
+          resources :home, only: :index
+          resources :collections, only: :index
         end
       end
     end

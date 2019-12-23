@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class FavouriteCollectionsController < ::Api::Buyers::AuthController
+  class FavouriteCollectionsController < ::AuthController
     def show
 
     end
