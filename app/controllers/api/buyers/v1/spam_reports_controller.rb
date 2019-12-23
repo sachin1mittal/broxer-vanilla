@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class SpamReportsController < ::Api::Buyers::AuthController
+  class SpamReportsController < ::AuthController
     def create
 
     end

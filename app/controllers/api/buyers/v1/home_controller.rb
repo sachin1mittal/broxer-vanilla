@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class HomeController < ::Api::Buyers::AuthController
+  class HomeController < ::AuthController
 
     def index
 

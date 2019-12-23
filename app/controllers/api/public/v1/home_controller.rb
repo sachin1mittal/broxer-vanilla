@@ -1,24 +1,9 @@
 module Api::Public::V1
-  class HomeController < ::Api::Public::BaseController
+  class HomeController < ::BaseController
+    skip_before_action :valid_action?
 
     def index
-
-    end
-
-    def privacy_policy
-
-    end
-
-    def contact_us
-
-    end
-
-    def about_us
-
-    end
-
-    def terms_and_conditions
-
+      api_render json: { message: 'Public HomeController Index' }
     end
   end
 end

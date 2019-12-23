@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class ReviewsController < ::Api::Buyers::AuthController
+  class ReviewsController < ::AuthController
     def create
 
     end

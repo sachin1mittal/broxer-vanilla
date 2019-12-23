@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class OrdersController < ::Api::Buyers::AuthController
+  class OrdersController < ::AuthController
     def index
 
     end

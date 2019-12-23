@@ -1,5 +1,5 @@
 module Api::Public::V1
-  class UsersController < ::Api::Public::BaseController
+  class UsersController < ::BaseController
 
     def show
       render_serializer scope: user

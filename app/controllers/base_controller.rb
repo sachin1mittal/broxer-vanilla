@@ -1,5 +1,4 @@
 class BaseController < ApiApplicationController
-  # prepend_before_action :disable_includes
   prepend_before_action :prepare_params
   before_action :valid_pagination_params?
 
@@ -10,19 +9,30 @@ class BaseController < ApiApplicationController
   end
 
   #
-  # Disable includes
-  #
-  def disable_includes
-    params[:include] = nil
-  end
-
-  #
   # Preprocess params
   #
   def prepare_params
     param! :fields, String, default: '', transform: -> (param) { param.split(',').map(&:to_sym) }
     param! :include, String, default: '', transform: -> (param) { param.split(',').map(&:to_sym) }
     param! :query, String, blank: false, transform: -> (query) { query.strip }
+  end
+
+  #
+  # render custom data
+  #
+  def api_render(json:, meta: nil, status: :ok, root: nil, is_success: true, fields: [])
+    if is_success
+      data = if root.blank?
+               { data: json }
+             else
+               { data: { root => json } }
+             end
+    else
+      data = { errors: json }
+    end
+    data = data.merge({ meta: meta }) unless meta.blank?
+    data = data.merge({ is_success: is_success, status_code: Rack::Utils::SYMBOL_TO_STATUS_CODE[status] })
+    render json: data, status: status, fields: fields
   end
 
   #

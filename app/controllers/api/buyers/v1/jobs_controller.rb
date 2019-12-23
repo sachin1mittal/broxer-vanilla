@@ -1,5 +1,5 @@
 module Api::Buyers::V1
-  class JobsController < ::Api::Buyers::AuthController
+  class JobsController < ::AuthController
 
     def show
 
