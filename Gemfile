@@ -66,7 +66,7 @@ gem 'capistrano-bundle_rsync', '~> 0.5.1', require: false
 gem 'composite_primary_keys', '10.0.2' # Composite key support for ActiveRecord
 gem 'config', '~> 1.7' # Easiest way to manage multi-environment settings
 # gem 'ddtrace', '~> 0.11.4', '>= 0.11.4' # Tracking the application metrics in datadog
-gem 'kaminari', '~> 1.1', '>= 1.1.1' # Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator.
+gem 'kaminari', '~> 1.2' # Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator.
 gem 'lograge', '~> 0.9.0' # Tame Rails' multi-line logging into a single line per request
 gem 'logstash-event', '~> 1.2', '>= 1.2.02' # Library that contains the classes required to create LogStash events
 gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346' # Tracking the application metrics in new relic
