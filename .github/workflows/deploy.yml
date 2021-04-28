@@ -5,6 +5,13 @@ on:
     branches:
       - master
 
+env:
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+  SLACK_USERNAME: Github Actions Bot
+  SLACK_ICON_EMOJI: ':github-actions-bot:'
+  SLACK_FOOTER: ''
+  SLACK_CHANNEL: freelancing
+
 jobs:
   slack_notification:
     runs-on: ubuntu-latest
@@ -14,11 +21,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       if: always()
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_USERNAME: Github Actions Bot
         SLACK_TITLE: Deployment Started
-        SLACK_ICON_EMOJI: ':github-actions-bot:'
-        SLACK_FOOTER: ''
 
     - name: Try to fail
       run: exit 1
@@ -27,31 +30,19 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       if: success()
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_USERNAME: Github Actions Bot
         SLACK_TITLE: Successfully Deployed
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON_EMOJI: ':github-actions-bot:'
-        SLACK_FOOTER: ''
+        SLACK_COLOR: ${{job.status}}
 
     - name: Slack Deployment Failed Notification
       uses: rtCamp/action-slack-notify@v2
       if: failure()
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_USERNAME: Github Actions Bot
         SLACK_TITLE: Deployment Failed
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON_EMOJI: ':github-actions-bot:'
-        SLACK_FOOTER: ''
+        SLACK_COLOR: ${{job.status}}
 
     - name: Slack Deployment Started Notification
       uses: rtCamp/action-slack-notify@v2
       if: cancelled()
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_USERNAME: Github Actions Bot
         SLACK_TITLE: Deployment Cancelled
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON_EMOJI: ':github-actions-bot:'
-        SLACK_FOOTER: ''
+        SLACK_COLOR: ${{job.status}}
