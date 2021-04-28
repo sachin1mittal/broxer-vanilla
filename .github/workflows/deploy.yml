@@ -10,7 +10,50 @@ jobs:
     runs-on: ubuntu-latest
     name: Slack Notification
     steps:
-    - name: Slack Notification
+    - name: Slack Deployment Started Notification
       uses: rtCamp/action-slack-notify@v2
+      if: always()
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_USERNAME: Github Actions Bot
+        SLACK_TITLE: Deployment Started
+        SLACK_ICON_EMOJI: ':github-actions-bot:'
+        SLACK_FOOTER: ''
+
+    - name: Sleep for 30 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '30s'
+
+    - name: Slack Deployment Successful Notification
+      uses: rtCamp/action-slack-notify@v2
+      if: success()
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_USERNAME: Github Actions Bot
+        SLACK_TITLE: Successfully Deployed
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_ICON_EMOJI: ':github-actions-bot:'
+        SLACK_FOOTER: ''
+
+    - name: Slack Deployment Failed Notification
+      uses: rtCamp/action-slack-notify@v2
+      if: failure()
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_USERNAME: Github Actions Bot
+        SLACK_TITLE: Deployment Failed
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_ICON_EMOJI: ':github-actions-bot:'
+        SLACK_FOOTER: ''
+
+    - name: Slack Deployment Started Notification
+      uses: rtCamp/action-slack-notify@v2
+      if: cancelled()
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_USERNAME: Github Actions Bot
+        SLACK_TITLE: Deployment Cancelled
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_ICON_EMOJI: ':github-actions-bot:'
+        SLACK_FOOTER: ''
