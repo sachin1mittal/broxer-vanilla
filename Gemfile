@@ -77,7 +77,7 @@ gem 'redis', '~> 4.0', '>= 4.0.1' # A Ruby client that tries to match Redis' API
 gem 'redis-namespace', '~> 1.6' # Adds a Redis::Namespace class which can be used to namespace calls to Redis
 gem 'rest-client', '~> 2.0', '>= 2.0.2' # A simple HTTP and REST client for Ruby, inspired by the Sinatra microframework style of specifying actions: get, put, post, delete.
 gem 'sentry-raven', '~> 2.7', '>= 2.7.2' # A gem that provides a client interface for the Sentry error logger
-gem 'sidekiq', '~> 5.1', '>= 5.1.1' # Simple, efficient background processing for Ruby.
+gem 'sidekiq', '~> 5.2' # Simple, efficient background processing for Ruby.
 # gem 'sidekiq-batch', '~> 0.1.4' # Sidekiq Batch Jobs Implementation
 gem 'sidekiq-cron', '~> 1.0' # Enables to set jobs to be run in specified time
 gem 'sidekiq-limit_fetch', '~> 3.4' # Sidekiq strategy to restrict number of workers which are able to run specified queues simultaneously.
